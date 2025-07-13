@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\ExpedienteController;
+use App\Http\Controllers\OperadorSolicitudController;
+use App\Http\Controllers\SolicitudController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
-use App\Http\Controllers\ExpedienteController;
-use App\Http\Controllers\SolicitudController;
-use App\Http\Controllers\OperadorSolicitudController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,6 +39,9 @@ Route::middleware(['auth'])->group(function () {
         ->name('operador.solicitudes.show');
     Route::get('/operador/solicitudes/{solicitud}/evaluate', [OperadorSolicitudController::class, 'evaluate'])
         ->name('operador.solicitudes.evaluate');
+
+    Route::view('/archivo-central', 'archivo-central')
+        ->name('archivo-central');
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Volt::route('settings/password', 'settings.password')->name('settings.password');
