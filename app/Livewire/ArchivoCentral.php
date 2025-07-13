@@ -7,29 +7,40 @@ use App\Models\Facultad;
 use App\Models\Tramite;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ArchivoCentral extends Component
 {
+    use WithPagination;
     public $search = '';
-
     public $year;
-
     public $month;
-
     public $faculty;
-
     public $type;
-
     public $state;
+
+    protected $queryString = [
+        'search'  => ['except' => ''],
+        'year'    => ['except' => null],
+        'month'   => ['except' => null],
+        'faculty' => ['except' => null],
+        'type'    => ['except' => null],
+        'state'   => ['except' => null],
+    ];
 
     public function updated($field)
     {
-        // component will re-render automatically
+        $this->resetPage();
     }
 
     public function resetFilters()
     {
-        $this->reset(['search', 'year', 'month', 'faculty', 'type', 'state']);
+        $this->search = null;
+        $this->year = null;
+        $this->month = null;
+        $this->faculty = null;
+        $this->type = null;
+        $this->state = null;
     }
 
     public function getYearsProperty()
@@ -84,25 +95,21 @@ class ArchivoCentral extends Component
 
     public function render()
     {
-        $query = Expediente::with(['tramite', 'facultad']);
+        $query = Expediente::query()
+            ->select(['id', 'id as codigo', 'nombre', 'fecha_expediente', 'facultad_id', 'tipo_tramite_id'])
+            ->with(['tramite', 'facultad', 'documentos']);
 
         $query->when($this->search, function ($q) {
             $search = $this->search;
-            $q->where(function ($qq) use ($search) {
-                $qq->where('nombre', 'like', "%{$search}%")
-                    ->orWhere('codigo', 'like', "%{$search}%");
-            });
+            $q->where('nombre', 'like', "%{$search}%");
         });
         $query->when($this->year, fn ($q) => $q->whereYear('fecha_expediente', $this->year));
         $query->when($this->month, fn ($q) => $q->whereMonth('fecha_expediente', $this->month));
         $query->when($this->faculty, fn ($q) => $q->where('facultad_id', $this->faculty));
         $query->when($this->type, fn ($q) => $q->where('tipo_tramite_id', $this->type));
 
-        if ($this->state === 'finalizado') {
-            $query->has('documentos');
-        } elseif ($this->state === 'pendiente') {
-            $query->doesntHave('documentos');
-        }
+        $query->when($this->state === 'finalizado', fn ($q) => $q->has('documentos'));
+        $query->when($this->state === 'pendiente', fn ($q) => $q->doesntHave('documentos'));
 
         $expedientes = $query->orderByDesc('fecha_expediente')->get();
 

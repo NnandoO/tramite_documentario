@@ -9,31 +9,31 @@
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-6 gap-4 mb-4">
-        <select wire:model="year" class="border rounded px-3 py-2 focus:ring focus:border-green-300">
+        <select wire:model.debounce.300ms="year" class="border rounded px-3 py-2 focus:ring focus:border-green-300">
             <option value="">Año</option>
             @foreach($this->years as $y)
                 <option value="{{ $y }}">{{ $y }}</option>
             @endforeach
         </select>
-        <select wire:model="month" class="border rounded px-3 py-2 focus:ring focus:border-green-300">
+        <select wire:model.debounce.300ms="month" class="border rounded px-3 py-2 focus:ring focus:border-green-300">
             <option value="">Mes</option>
             @foreach($this->months as $num => $name)
                 <option value="{{ $num }}">{{ $name }}</option>
             @endforeach
         </select>
-        <select wire:model="faculty" class="border rounded px-3 py-2 focus:ring focus:border-green-300">
+        <select wire:model.debounce.300ms="faculty" class="border rounded px-3 py-2 focus:ring focus:border-green-300">
             <option value="">Facultad</option>
             @foreach($this->faculties as $id => $name)
                 <option value="{{ $id }}">{{ $name }}</option>
             @endforeach
         </select>
-        <select wire:model="type" class="border rounded px-3 py-2 focus:ring focus:border-green-300">
+        <select wire:model.debounce.300ms="type" class="border rounded px-3 py-2 focus:ring focus:border-green-300">
             <option value="">Tipo de trámite</option>
             @foreach($this->types as $id => $name)
                 <option value="{{ $id }}">{{ $name }}</option>
             @endforeach
         </select>
-        <select wire:model="state" class="border rounded px-3 py-2 focus:ring focus:border-green-300">
+        <select wire:model.debounce.300ms="state" class="border rounded px-3 py-2 focus:ring focus:border-green-300">
             <option value="">Estado</option>
             @foreach($this->states as $key => $label)
                 <option value="{{ $key }}">{{ $label }}</option>
