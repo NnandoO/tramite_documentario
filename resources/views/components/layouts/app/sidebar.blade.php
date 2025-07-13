@@ -13,7 +13,7 @@
                     <li><a href="#" class="block px-4 py-2 hover:bg-green-700">Mis Asignaciones</a></li>
                     <li><a href="#" class="block px-4 py-2 hover:bg-green-700">Pendientes</a></li>
                     <li><a href="#" class="block px-4 py-2 hover:bg-green-700">Completados</a></li>
-                    <li><a href="{{ route('archivo-central') }}" class="block px-4 py-2 hover:bg-green-700 {{ request()->is('archivo-central') ? 'bg-green-700' : '' }}">Archivo Central</a></li>
+                    <li><a href="{{ route('archivo.central') }}" class="block px-4 py-2 hover:bg-green-700 {{ request()->is('archivo-central') ? 'bg-green-700' : '' }}">Archivo Central</a></li>
                 </ul>
             </nav>
         </div>

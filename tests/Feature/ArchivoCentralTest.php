@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\Livewire\ArchivoCentral;
 use App\Models\Expediente;
+use App\Models\Facultad;
+use App\Models\Tramite;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Tests\TestCase;
@@ -61,5 +63,39 @@ class ArchivoCentralTest extends TestCase
         $first = $component->viewData('expedientes')->first();
 
         $this->assertEquals($expediente->id, $first->codigo);
+    }
+
+    public function test_filter_by_faculty(): void
+    {
+        $arquitectura = Facultad::factory()->create(['nombre' => 'Arquitectura']);
+        $otra = Facultad::factory()->create(['nombre' => 'Ingeniería Civil']);
+
+        Expediente::factory()->create(['facultad_id' => $arquitectura->id]);
+        Expediente::factory()->create(['facultad_id' => $otra->id]);
+
+        $component = Livewire::test(ArchivoCentral::class)
+            ->set('faculty', 'Arquitectura');
+
+        $data = $component->viewData('expedientes');
+
+        $this->assertCount(1, $data);
+        $this->assertEquals('Arquitectura', $data->first()->facultad->nombre);
+    }
+
+    public function test_filter_by_type(): void
+    {
+        $tipoA = Tramite::factory()->create(['nombre' => 'CARNÉ UNIVERSITARIO']);
+        $tipoB = Tramite::factory()->create(['nombre' => 'SEMIBECAS Y BECAS – CEPRE']);
+
+        Expediente::factory()->create(['tipo_tramite_id' => $tipoA->id]);
+        Expediente::factory()->create(['tipo_tramite_id' => $tipoB->id]);
+
+        $component = Livewire::test(ArchivoCentral::class)
+            ->set('type', 'CARNÉ UNIVERSITARIO');
+
+        $data = $component->viewData('expedientes');
+
+        $this->assertCount(1, $data);
+        $this->assertEquals('CARNÉ UNIVERSITARIO', $data->first()->tramite->nombre);
     }
 }

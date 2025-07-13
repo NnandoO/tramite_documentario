@@ -40,8 +40,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/operador/solicitudes/{solicitud}/evaluate', [OperadorSolicitudController::class, 'evaluate'])
         ->name('operador.solicitudes.evaluate');
 
-    Route::view('/archivo-central', 'archivo-central')
-        ->name('archivo-central');
+    Route::get('/archivo-central', \App\Http\Controllers\ArchivoCentralController::class)
+        ->name('archivo.central');
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Volt::route('settings/password', 'settings.password')->name('settings.password');

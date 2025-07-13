@@ -3,8 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Expediente;
-use App\Models\Facultad;
-use App\Models\Tramite;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -18,6 +16,65 @@ class ArchivoCentral extends Component
     public $faculty;
     public $type;
     public $state;
+
+    public const FACULTIES = [
+        'Arquitectura',
+        'Ingeniería Civil',
+        'Ingeniería de Minas',
+        'Ingeniería de Sistemas',
+        'Ingeniería Eléctrica y Electrónica',
+        'Ingeniería Mecánica',
+        'Ingeniería Metalúrgica y de Materiales',
+        'Ingeniería Química',
+        'Ingeniería Química Industrial',
+        'Ingeniería Química Ambiental',
+        'Administración de Empresas',
+        'Contabilidad',
+        'Economía',
+        'Administración de Negocios - Tarma',
+        'Administración Hotelera y Turismo - Tarma',
+        'Antropología',
+        'Ciencias de la Comunicación',
+        'Derecho y Ciencias Políticas',
+        'Sociología',
+        'Trabajo Social',
+        'Educación Inicial',
+        'Educación Primaria',
+        'Educación Filosofía, Ciencias Sociales y Relaciones Humanas',
+        'Educación Lengua, Literatura y Comunicación',
+        'Educación Ciencias Naturales y Ambientales',
+        'Educación Ciencias Matemáticas e Informática',
+        'Educación Física y Psicomotricidad',
+        'Agronomía',
+        'Ciencias Forestales y del Ambiente',
+        'Ingeniería en Industrias Alimentarias',
+        'Zootecnia',
+        'Ing. Agroindustrial - Tarma',
+        'Ing. Agronomía Tropical - Satipo',
+        'Ing. Forestal Tropical - Satipo',
+        'Ing. Industrias Alimentarias Tropical - Satipo',
+        'Zootecnia Tropical - Satipo',
+    ];
+
+    public const TYPES = [
+        'ACCESO A LA INFORMACIÓN PÚBLICA',
+        'SEMIBECAS Y BECAS – CEPRE',
+        'CARNÉ UNIVERSITARIO',
+        'SOLICITUD DE DESCUENTO POR PLANILLA – CEPRE',
+        'INSCRIPCIÓN – CEPRE',
+        'EXAMEN COMPLEMENTARIO',
+        'CONSTANCIA DE ESTUDIOS – CEPRE',
+        'DUPLICADO DE CONSTANCIA DE HABILITACIÓN – CEPRE',
+        'EXAMEN EXTEMPORÁNEO / JUSTIFICACIÓN DE INASISTENCIA',
+        'CAMBIO DE FACULTAD – CEPRE',
+        'INSCRIPCIÓN EXAMEN PRIMERA SELECCIÓN',
+        'INSCRIPCIÓN EXAMEN ORDINARIO',
+        'CONSTANCIA DE PRÁCTICAS PREPROFESIONALES/INTERNADO',
+        'INSCRIPCIÓN CONCURSO DOCTORADO (EXTERNO/INTERNO/ORDINARIO)',
+        'CERTIFICADO DE ESTUDIOS DE PREGRADO (FORMATO 1 y 2)',
+        'CONSTANCIA DE RÉCORD ACADÉMICO, MATRÍCULA Y OTROS',
+        'ETC. (agregar las demás según lista completa)',
+    ];
 
     protected $queryString = [
         'search'  => ['except' => ''],
@@ -75,14 +132,14 @@ class ArchivoCentral extends Component
         ];
     }
 
-    public function getFacultiesProperty()
+    public function getFacultiesProperty(): array
     {
-        return Facultad::orderBy('nombre')->pluck('nombre', 'id');
+        return self::FACULTIES;
     }
 
-    public function getTypesProperty()
+    public function getTypesProperty(): array
     {
-        return Tramite::orderBy('nombre')->pluck('nombre', 'id');
+        return self::TYPES;
     }
 
     public function getStatesProperty(): array
@@ -105,8 +162,12 @@ class ArchivoCentral extends Component
         });
         $query->when($this->year, fn ($q) => $q->whereYear('fecha_expediente', $this->year));
         $query->when($this->month, fn ($q) => $q->whereMonth('fecha_expediente', $this->month));
-        $query->when($this->faculty, fn ($q) => $q->where('facultad_id', $this->faculty));
-        $query->when($this->type, fn ($q) => $q->where('tipo_tramite_id', $this->type));
+        $query->when($this->faculty, fn ($q) =>
+            $q->whereHas('facultad', fn ($sub) => $sub->where('nombre', $this->faculty))
+        );
+        $query->when($this->type, fn ($q) =>
+            $q->whereHas('tramite', fn ($sub) => $sub->where('nombre', $this->type))
+        );
 
         $query->when($this->state === 'finalizado', fn ($q) => $q->has('documentos'));
         $query->when($this->state === 'pendiente', fn ($q) => $q->doesntHave('documentos'));
@@ -114,7 +175,12 @@ class ArchivoCentral extends Component
         $expedientes = $query->orderByDesc('fecha_expediente')->get();
 
         return view('livewire.archivo-central', [
-            'expedientes' => $expedientes,
+            'expedientes'   => $expedientes,
+            'years'         => $this->years,
+            'months'        => $this->months,
+            'facultades'    => $this->faculties,
+            'tiposTramite'  => $this->types,
+            'states'        => $this->states,
         ]);
     }
 }
