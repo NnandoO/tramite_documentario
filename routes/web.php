@@ -67,8 +67,6 @@ Route::middleware(['auth', 'role:4', 'session.timeout'])->prefix('operador')->gr
     Route::post('/entregas/{entrega}/notificacion', [NotificacionController::class, 'store'])
         ->name('operador.notificacion.store');
 
-    Route::get('/auditoria', [AuditEntregaController::class, 'index'])
-        ->name('operador.auditoria');
 });
 
 Route::middleware(['auth', 'role:4', 'session.timeout'])->get('/archivo-central', function () {
@@ -78,6 +76,8 @@ Route::middleware(['auth', 'role:4', 'session.timeout'])->get('/archivo-central'
 Route::middleware(['auth', 'role:product_owner'])->group(function () {
     Route::get('/auditoria/entregas', [\App\Http\Controllers\AuditEntregaController::class, 'index'])
         ->name('auditoria.entregas.index');
+    Route::get('/operador/auditoria', [\App\Http\Controllers\AuditEntregaController::class, 'index'])
+        ->name('operador.auditoria');
 });
 
 Route::post('/notificaciones/{notificacion}/confirmar', [NotificacionController::class, 'confirm'])

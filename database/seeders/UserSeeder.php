@@ -62,6 +62,17 @@ class UserSeeder extends Seeder
                 'email_verified_at' => now(),
                 'created_at' => now(),
                 'updated_at' => now()
+            ],
+            [
+                'name' => 'Product',
+                'last_name' => 'Owner',
+                'email' => 'owner@example.com',
+                'dni' => '52345678',
+                'role_id' => 5,
+                'password' => Hash::make('password123'),
+                'email_verified_at' => now(),
+                'created_at' => now(),
+                'updated_at' => now()
             ]
         ];
 
