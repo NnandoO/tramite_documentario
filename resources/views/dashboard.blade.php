@@ -1,7 +1,7 @@
 <x-layouts.app :title="__('Dashboard')">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <div class="flex justify-end">
-            <a href="{{ route('expedientes.create') }}" class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700">
+            <a href="{{ route('expedientes.create') }}" class="inline-flex items-center gap-2 rounded-lg bg-yellow-500 px-4 py-2 font-semibold text-white hover:bg-yellow-600">
                 + {{ __('Nuevo expediente') }}
             </a>
         </div>
