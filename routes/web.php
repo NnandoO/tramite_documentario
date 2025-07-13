@@ -40,12 +40,24 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/operador/solicitudes/{solicitud}/evaluate', [OperadorSolicitudController::class, 'evaluate'])
         ->name('operador.solicitudes.evaluate');
 
+    Route::get('/operador/solicitudes/{id}/entregar', [\App\Http\Controllers\ExpedienteEntregadoController::class, 'create'])
+        ->name('operador.solicitudes.entregar.create');
+    Route::post('/operador/solicitudes/{id}/entregar', [\App\Http\Controllers\ExpedienteEntregadoController::class, 'store'])
+        ->name('operador.solicitudes.entregar.store');
+    Route::post('/operador/entregados/{entrega}/notificar', [\App\Http\Controllers\ExpedienteEntregadoController::class, 'notify'])
+        ->name('operador.entregados.notificar');
+
     Route::get('/archivo-central', \App\Http\Controllers\ArchivoCentralController::class)
         ->name('archivo.central');
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+});
+
+Route::middleware(['auth', 'role:product_owner'])->group(function () {
+    Route::get('/auditoria/entregas', [\App\Http\Controllers\AuditEntregaController::class, 'index'])
+        ->name('auditoria.entregas.index');
 });
 
 require __DIR__.'/auth.php';
