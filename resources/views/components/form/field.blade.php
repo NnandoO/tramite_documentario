@@ -1,4 +1,4 @@
-@props(['label', 'name', 'errors'])
+@props(['label', 'name', 'type' => 'text', 'errors' => null])
 <div class="grid gap-1">
     <label for="{{ $name }}" class="text-sm font-medium text-gray-700 dark:text-gray-200">{{ $label }}</label>
     <div class="relative">

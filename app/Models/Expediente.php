@@ -19,15 +19,18 @@ class Expediente extends Model
     use HasFactory;
 
     protected $fillable = [
+        'codigo',
         'nombre',
         'dependencia_id',
         'tipo_tramite_id',
         'facultad_id',
         'fecha_expediente',
+        'restringido',
     ];
 
     protected $casts = [
         'fecha_expediente' => 'date',
+        'restringido' => 'boolean',
     ];
 
     public function dependencia()
