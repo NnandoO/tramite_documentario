@@ -1,4 +1,6 @@
-<x-layouts.app :title="__('Detalle Entrega')">
+@extends('operator.dashboard')
+
+@section('module')
     <div class="container mx-auto p-4">
         <h1 class="text-xl font-semibold mb-4">{{ __('Notificación') }}</h1>
         <div class="bg-white shadow p-4 rounded mb-6">
@@ -39,5 +41,5 @@
             </div>
         </div>
     </div>
-</x-layouts.app>
+@endsection
 

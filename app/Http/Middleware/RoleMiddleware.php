@@ -11,7 +11,15 @@ class RoleMiddleware
     {
         $user = $request->user();
 
-        if (! $user || $user->role?->name !== $role) {
+        if (! $user) {
+            return response()->view('errors.access-denied', status: 403);
+        }
+
+        if (is_numeric($role)) {
+            if ($user->role_id != (int) $role) {
+                return response()->view('errors.access-denied', status: 403);
+            }
+        } elseif ($user->role?->name !== $role) {
             return response()->view('errors.access-denied', status: 403);
         }
 

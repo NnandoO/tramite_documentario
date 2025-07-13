@@ -104,14 +104,14 @@ class ArchivoCentralTest extends TestCase
 
     public function test_guest_is_redirected_to_login(): void
     {
-        $this->get('/archivo-central')->assertRedirect('/login');
+        $this->get('/operador/repositorio')->assertRedirect('/login');
     }
 
     public function test_user_without_role_gets_access_denied(): void
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->get('/archivo-central');
+        $response = $this->actingAs($user)->get('/operador/repositorio');
 
         $response->assertStatus(403);
         $response->assertSee('Acceso no permitido');
@@ -119,14 +119,13 @@ class ArchivoCentralTest extends TestCase
 
     public function test_session_expires_after_inactivity(): void
     {
-        $role = Role::create(['name' => 'operador_del_archivo_central']);
-        $user = User::factory()->create(['role_id' => $role->id]);
+        $user = User::factory()->create(['role_id' => 4]);
 
-        $this->actingAs($user)->get('/archivo-central');
+        $this->actingAs($user)->get('/operador/repositorio');
 
         $this->travel(11)->minutes();
 
-        $this->get('/archivo-central')->assertRedirect('/login');
+        $this->get('/operador/repositorio')->assertRedirect('/login');
 
         $this->travelBack();
     }

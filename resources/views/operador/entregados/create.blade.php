@@ -1,4 +1,6 @@
-<x-layouts.app :title="__('Entregar Expediente')">
+@extends('operator.dashboard')
+
+@section('module')
     <div class="container mx-auto max-w-xl p-6">
         <h1 class="text-xl font-semibold mb-4">{{ __('Subir Copia de Expediente') }}</h1>
         <form method="POST" action="{{ route('operador.solicitudes.entregar.store', $solicitud->id) }}" enctype="multipart/form-data" class="grid gap-4">
@@ -11,4 +13,4 @@
             </div>
         </form>
     </div>
-</x-layouts.app>
+@endsection

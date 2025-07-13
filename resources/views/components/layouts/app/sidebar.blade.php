@@ -9,11 +9,12 @@
             <div class="p-4 text-2xl font-bold">Trámite Digital</div>
             <nav class="mt-4">
                 <ul>
-                    <li><a href="{{ route('dashboard') }}" class="block px-4 py-2 hover:bg-green-700 {{ request()->routeIs('dashboard') ? 'bg-green-700' : '' }}">Dashboard</a></li>
-                    <li><a href="#" class="block px-4 py-2 hover:bg-green-700">Mis Asignaciones</a></li>
-                    <li><a href="#" class="block px-4 py-2 hover:bg-green-700">Pendientes</a></li>
-                    <li><a href="#" class="block px-4 py-2 hover:bg-green-700">Completados</a></li>
-                    <li><a href="{{ route('archivo.central') }}" class="block px-4 py-2 hover:bg-green-700 {{ request()->is('archivo-central') ? 'bg-green-700' : '' }}">Archivo Central</a></li>
+                    @if(auth()->user()->role_id == 4)
+                        <li><a href="{{ url('/operador/repositorio') }}" class="block px-4 py-2 hover:bg-green-700 {{ request()->is('operador/repositorio') ? 'bg-green-700' : '' }}">Repositorio Digital</a></li>
+                        <li><a href="{{ url('/operador/solicitudes') }}" class="block px-4 py-2 hover:bg-green-700 {{ request()->is('operador/solicitudes*') ? 'bg-green-700' : '' }}">Solicitudes</a></li>
+                        <li><a href="{{ url('/operador/entregas') }}" class="block px-4 py-2 hover:bg-green-700 {{ request()->is('operador/entregas*') ? 'bg-green-700' : '' }}">Entregas y Notificaciones</a></li>
+                        <li><a href="{{ url('/operador/auditoria') }}" class="block px-4 py-2 hover:bg-green-700 {{ request()->is('operador/auditoria') ? 'bg-green-700' : '' }}">Auditoría de Entregas</a></li>
+                    @endif
                 </ul>
             </nav>
         </div>

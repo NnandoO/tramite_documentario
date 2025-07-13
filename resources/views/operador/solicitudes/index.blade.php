@@ -1,4 +1,6 @@
-<x-layouts.app :title="__('Solicitudes Pendientes')">
+@extends('operator.dashboard')
+
+@section('module')
     <div class="container mx-auto p-4">
         <h1 class="text-xl font-semibold mb-4">{{ __('Solicitudes Pendientes') }}</h1>
         <div class="overflow-x-auto">
@@ -40,4 +42,4 @@
             </table>
         </div>
     </div>
-</x-layouts.app>
+@endsection

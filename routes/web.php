@@ -4,12 +4,16 @@ use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\OperadorSolicitudController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\NotificacionController;
+use App\Http\Controllers\ExpedienteEntregadoController;
+use App\Http\Controllers\AuditEntregaController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+Route::view('/acceso-denegado', 'errors.access-denied')->name('access.denied');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
@@ -34,33 +38,41 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/expedientes/solicitar', [SolicitudController::class, 'store'])
         ->name('expedientes.solicitar.store');
 
-    Route::get('/operador/solicitudes', [OperadorSolicitudController::class, 'index'])
-        ->name('operador.solicitudes.index');
-    Route::get('/operador/solicitudes/{solicitud}', [OperadorSolicitudController::class, 'show'])
-        ->name('operador.solicitudes.show');
-    Route::get('/operador/solicitudes/{solicitud}/evaluate', [OperadorSolicitudController::class, 'evaluate'])
-        ->name('operador.solicitudes.evaluate');
-
-    Route::get('/operador/solicitudes/{id}/entregar', [\App\Http\Controllers\ExpedienteEntregadoController::class, 'create'])
-        ->name('operador.solicitudes.entregar.create');
-    Route::post('/operador/solicitudes/{id}/entregar', [\App\Http\Controllers\ExpedienteEntregadoController::class, 'store'])
-        ->name('operador.solicitudes.entregar.store');
-    Route::post('/operador/entregados/{entrega}/notificar', [\App\Http\Controllers\ExpedienteEntregadoController::class, 'notify'])
-        ->name('operador.entregados.notificar');
-    Route::get('/operador/entregas/{entrega}', [\App\Http\Controllers\ExpedienteEntregadoController::class, 'show'])
-        ->name('operador.entregas.show');
-
-    Route::post('/operador/entregas/{entrega}/notificacion', [\App\Http\Controllers\NotificacionController::class, 'store'])
-        ->name('operador.notificacion.store')
-        ->middleware('role:operador');
-
-    Route::get('/archivo-central', \App\Http\Controllers\ArchivoCentralController::class)
-        ->middleware(['role:operador_del_archivo_central', 'session.timeout'])
-        ->name('archivo.central');
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+});
+
+Route::middleware(['auth', 'role:4', 'session.timeout'])->prefix('operador')->group(function () {
+    Route::view('/entregas', 'operador.entregas.index')->name('operador.entregas.index');
+    Route::view('/repositorio', 'operator.repositorio')->name('operador.repositorio');
+
+    Route::get('/solicitudes', [OperadorSolicitudController::class, 'index'])
+        ->name('operador.solicitudes.index');
+    Route::get('/solicitudes/{solicitud}', [OperadorSolicitudController::class, 'show'])
+        ->name('operador.solicitudes.show');
+    Route::get('/solicitudes/{solicitud}/evaluate', [OperadorSolicitudController::class, 'evaluate'])
+        ->name('operador.solicitudes.evaluate');
+
+    Route::get('/solicitudes/{id}/entregar', [ExpedienteEntregadoController::class, 'create'])
+        ->name('operador.solicitudes.entregar.create');
+    Route::post('/solicitudes/{id}/entregar', [ExpedienteEntregadoController::class, 'store'])
+        ->name('operador.solicitudes.entregar.store');
+    Route::post('/entregados/{entrega}/notificar', [ExpedienteEntregadoController::class, 'notify'])
+        ->name('operador.entregados.notificar');
+    Route::get('/entregas/{entrega}', [ExpedienteEntregadoController::class, 'show'])
+        ->name('operador.entregas.show');
+
+    Route::post('/entregas/{entrega}/notificacion', [NotificacionController::class, 'store'])
+        ->name('operador.notificacion.store');
+
+    Route::get('/auditoria', [AuditEntregaController::class, 'index'])
+        ->name('operador.auditoria');
+});
+
+Route::middleware(['auth', 'role:4', 'session.timeout'])->get('/archivo-central', function () {
+    return redirect()->route('operador.repositorio');
 });
 
 Route::middleware(['auth', 'role:product_owner'])->group(function () {
