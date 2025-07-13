@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Mesa de trámites</title>
+        <title>Mesa de tramites</title>
 
         <!-- Favicon -->
         <link rel="icon" href="/favicon.ico" sizes="any">
