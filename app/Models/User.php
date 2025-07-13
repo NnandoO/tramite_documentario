@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use App\Models\NotificacionSolicitud;
 
 class User extends Authenticatable
 {
@@ -53,11 +50,6 @@ class User extends Authenticatable
         ];
     }
 
-    public function role(): BelongsTo
-    {
-        return $this->belongsTo(Role::class);
-    }
-
     /**
      * Get the user's initials
      */
@@ -69,10 +61,4 @@ class User extends Authenticatable
             ->map(fn ($word) => Str::substr($word, 0, 1))
             ->implode('');
     }
-
-    public function notificacionSolicitudes()
-    {
-        return $this->hasMany(NotificacionSolicitud::class, 'operador_id');
-    }
 }
-
