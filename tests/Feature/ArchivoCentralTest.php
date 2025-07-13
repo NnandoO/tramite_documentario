@@ -6,6 +6,9 @@ use App\Livewire\ArchivoCentral;
 use App\Models\Expediente;
 use App\Models\Facultad;
 use App\Models\Tramite;
+use App\Models\User;
+use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Tests\TestCase;
@@ -97,5 +100,34 @@ class ArchivoCentralTest extends TestCase
 
         $this->assertCount(1, $data);
         $this->assertEquals('CARNÉ UNIVERSITARIO', $data->first()->tramite->nombre);
+    }
+
+    public function test_guest_is_redirected_to_login(): void
+    {
+        $this->get('/archivo-central')->assertRedirect('/login');
+    }
+
+    public function test_user_without_role_gets_access_denied(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/archivo-central');
+
+        $response->assertStatus(403);
+        $response->assertSee('Acceso no permitido');
+    }
+
+    public function test_session_expires_after_inactivity(): void
+    {
+        $role = Role::create(['name' => 'operador_del_archivo_central']);
+        $user = User::factory()->create(['role_id' => $role->id]);
+
+        $this->actingAs($user)->get('/archivo-central');
+
+        $this->travel(11)->minutes();
+
+        $this->get('/archivo-central')->assertRedirect('/login');
+
+        $this->travelBack();
     }
 }

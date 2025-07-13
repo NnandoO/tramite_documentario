@@ -12,7 +12,7 @@ class RoleMiddleware
         $user = $request->user();
 
         if (! $user || $user->role?->name !== $role) {
-            abort(403);
+            return response()->view('errors.access-denied', status: 403);
         }
 
         return $next($request);

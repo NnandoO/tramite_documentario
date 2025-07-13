@@ -3,6 +3,7 @@
 use App\Http\Controllers\ExpedienteController;
 use App\Http\Controllers\OperadorSolicitudController;
 use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\NotificacionController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -46,8 +47,15 @@ Route::middleware(['auth'])->group(function () {
         ->name('operador.solicitudes.entregar.store');
     Route::post('/operador/entregados/{entrega}/notificar', [\App\Http\Controllers\ExpedienteEntregadoController::class, 'notify'])
         ->name('operador.entregados.notificar');
+    Route::get('/operador/entregas/{entrega}', [\App\Http\Controllers\ExpedienteEntregadoController::class, 'show'])
+        ->name('operador.entregas.show');
+
+    Route::post('/operador/entregas/{entrega}/notificacion', [\App\Http\Controllers\NotificacionController::class, 'store'])
+        ->name('operador.notificacion.store')
+        ->middleware('role:operador');
 
     Route::get('/archivo-central', \App\Http\Controllers\ArchivoCentralController::class)
+        ->middleware(['role:operador_del_archivo_central', 'session.timeout'])
         ->name('archivo.central');
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
@@ -59,5 +67,9 @@ Route::middleware(['auth', 'role:product_owner'])->group(function () {
     Route::get('/auditoria/entregas', [\App\Http\Controllers\AuditEntregaController::class, 'index'])
         ->name('auditoria.entregas.index');
 });
+
+Route::post('/notificaciones/{notificacion}/confirmar', [NotificacionController::class, 'confirm'])
+    ->name('notificaciones.confirmar')
+    ->middleware('auth','role:unidad_notificaciones');
 
 require __DIR__.'/auth.php';

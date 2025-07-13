@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Storage;
 
 class ExpedienteEntregadoController extends Controller
 {
+    public function show(ExpedienteEntregado $entrega)
+    {
+        return view('operador.entregas.show', compact('entrega'));
+    }
     public function create(int $id)
     {
         $solicitud = SolicitudExpediente::findOrFail($id);
