@@ -24,3 +24,5 @@ require __DIR__.'/auth.php';
 
 Route::get('/tramites/record-academico', [TramiteController::class, 'showRecordForm'])->name('tramites.record');
 Route::post('/tramites/record-academico', [TramiteController::class, 'submitRecordForm'])->name('tramites.record.enviar');
+Route::get('/tramites/constancia-orden-merito', [TramiteController::class, 'showConstOrdForm'])->name('tramites.orden');
+Route::post('/tramites/constancia-orden-merito', [TramiteController::class, 'submitConstOrdForm'])->name('tramites.orden.enviar');
