@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Mesa de trámites</title>
+        <title>Mesa de los trámites</title>
 
         <!-- Favicon -->
         <link rel="icon" href="/favicon.ico" sizes="any">
@@ -197,7 +197,7 @@
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">Servicios destacados</h2>
                     <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Nuestra plataforma ofrece todo lo que necesitas para gestionar tus trámites de manera eficiente</p>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Service Card 1 -->
                     <div class="service-card bg-white dark:bg-gray-700 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-custom">
@@ -209,7 +209,7 @@
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Trámites en línea</h3>
                         <p class="text-gray-600 dark:text-gray-300">Realiza tus trámites sin salir de casa, de manera rápida y segura desde cualquier dispositivo.</p>
                     </div>
-                    
+
                     <!-- Service Card 2 -->
                     <div class="service-card bg-white dark:bg-gray-700 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-custom">
                         <div class="w-12 h-12 bg-secondary-100 dark:bg-secondary-900 rounded-lg flex items-center justify-center mb-4">
@@ -220,7 +220,7 @@
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Gestión de citas</h3>
                         <p class="text-gray-600 dark:text-gray-300">Agenda y gestiona tus citas previas con las administraciones públicas de forma sencilla.</p>
                     </div>
-                    
+
                     <!-- Service Card 3 -->
                     <div class="service-card bg-white dark:bg-gray-700 rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-custom">
                         <div class="w-12 h-12 bg-secondary-100 dark:bg-secondary-900 rounded-lg flex items-center justify-center mb-4">
@@ -246,7 +246,7 @@
                     </div>
                     <div class="lg:w-1/2">
                         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">Por qué elegirnos</h2>
-                        
+
                         <div class="space-y-6">
                             <div class="flex">
                                 <div class="flex-shrink-0">
@@ -261,7 +261,7 @@
                                     <p class="mt-1 text-gray-600 dark:text-gray-300">Evita filas y esperas innecesarias realizando tus trámites en minutos desde cualquier lugar.</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex">
                                 <div class="flex-shrink-0">
                                     <div class="flex items-center justify-center h-10 w-10 rounded-md bg-secondary-500 text-black">
@@ -275,7 +275,7 @@
                                     <p class="mt-1 text-gray-600 dark:text-gray-300">Tus datos están protegidos con los más altos estándares de seguridad y encriptación.</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex">
                                 <div class="flex-shrink-0">
                                     <div class="flex items-center justify-center h-10 w-10 rounded-md bg-secondary-500 text-black">
@@ -330,7 +330,7 @@
                         </div>
                         <p class="text-gray-300">Simplificamos tus trámites administrativos para que puedas enfocarte en lo que realmente importa.</p>
                     </div>
-                    
+
                     <div>
                         <h3 class="text-lg font-semibold mb-4 text-secondary-500">Servicios</h3>
                         <ul class="space-y-2">
@@ -340,7 +340,7 @@
                             <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Documentación</a></li>
                         </ul>
                     </div>
-                    
+
                     <div>
                         <h3 class="text-lg font-semibold mb-4 text-secondary-500">Compañía</h3>
                         <ul class="space-y-2">
@@ -350,7 +350,7 @@
                             <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Privacidad</a></li>
                         </ul>
                     </div>
-                    
+
                     <div>
                         <h3 class="text-lg font-semibold mb-4 text-secondary-500">Contacto</h3>
                         <ul class="space-y-2">
@@ -376,7 +376,7 @@
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="border-t border-primary-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
                     <p class="text-gray-300">© 2023 Mesa de trámites. Todos los derechos reservados.</p>
                     <div class="flex space-x-6 mt-4 md:mt-0">
