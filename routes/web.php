@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use App\Http\Controllers\TramiteController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,3 +21,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/tramites/record-academico', [TramiteController::class, 'showRecordForm'])->name('tramites.record');
+Route::post('/tramites/record-academico', [TramiteController::class, 'submitRecordForm'])->name('tramites.record.enviar');
