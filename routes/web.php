@@ -36,6 +36,26 @@ Route::view('formulario_solicitudes', 'formulario_solicitudes')
 Route::view('enviar_expediente', 'enviar_expediente')
     ->middleware(['auth', 'verified'])
     ->name('enviar.expediente');
+=======
+Route::view('archivo_central', 'archivo_central')
+    ->middleware(['auth', 'verified'])
+    ->name('archivo.central');
+
+Route::view('carga_documentos', 'carga_documentos')
+    ->middleware(['auth', 'verified'])
+    ->name('carga.documentos');
+
+Route::view('registro_expediente', 'registro_expediente')
+    ->middleware(['auth', 'verified'])
+    ->name('registro.expediente');
+
+Route::view('solicitudes_pendientes', 'solicitudes_pendientes')
+    ->middleware(['auth', 'verified'])
+    ->name('solicitudes.pendientes');
+
+Route::view('formulario_solicitudes', 'formulario_solicitudes')
+    ->middleware(['auth', 'verified'])
+    ->name('formulario.solicitudes');
 
 Route::get('/carga_documentos', [G1_DocumentosController::class, 'index'])
     ->middleware(['auth', 'verified'])

@@ -21,7 +21,6 @@
                     <flux:navlist.item icon="document-duplicate" :href="route('solicitudes.pendientes')" :current="request()->routeIs('solicitudes.pendientes')" wire:navigate>{{ __('Solicitudes Pendientes') }}</flux:navlist.item>
                     <flux:navlist.item icon="document-arrow-up" :href="route('formulario.solicitudes')" :current="request()->routeIs('formulario.solicitudes')" wire:navigate>{{ __('Formulario Solicitudes') }}</flux:navlist.item>
                     <flux:navlist.item icon="document-check" :href="route('enviar.expediente')" :current="request()->routeIs('enviar.expediente')" wire:navigate>{{ __('Enviar expediente aprobado') }}</flux:navlist.item>
-                    
                 </flux:navlist.group>
             </flux:navlist>
 
