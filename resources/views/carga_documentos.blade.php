@@ -1,5 +1,5 @@
 <x-layouts.app :title="__('Carga de documentos digitalizados')">
-    <div class="pb-8">
+    <div class="pb-4">
         <h1 class="text-3xl font-bold text-green-800">Carga de documentos digitalizados</h1>
     </div>
     <div class="max-w-5xl mx-auto mt-4 bg-white shadow-md p-8 rounded-xl space-y-6"></h1>

@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
     <head>
         @include('partials.head')
+        @livewireStyles
     </head>
     <body class="min-h-screen bg-zinc-200">
         <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-green-800">
@@ -14,11 +15,12 @@
             <flux:navlist variant="outline">
                 <flux:navlist.group class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                    <flux:navlist.item icon="document" :href="route('archivo.central')" :current="request()->routeIs('archivo.central')" wire:navigate>{{ __('Archivo Central') }}</flux:navlist.item>
-                    <flux:navlist.item icon="document" :href="route('carga.documentos')" :current="request()->routeIs('carga.documentos')" wire:navigate>{{ __('Cargar Documentos') }}</flux:navlist.item>
-                    <flux:navlist.item icon="document" :href="route('registro.expediente')" :current="request()->routeIs('registro.expediente')" wire:navigate>{{ __('Registro Expediente') }}</flux:navlist.item>
-                    <flux:navlist.item icon="document" :href="route('solicitudes.pendientes')" :current="request()->routeIs('solicitudes.pendientes')" wire:navigate>{{ __('Solicitudes Pendientes') }}</flux:navlist.item>
-                    <flux:navlist.item icon="document" :href="route('formulario.solicitudes')" :current="request()->routeIs('formulario.solicitudes')" wire:navigate>{{ __('Formulario Solicitudes') }}</flux:navlist.item>
+                    <flux:navlist.item icon="document-magnifying-glass" :href="route('archivo.central')" :current="request()->routeIs('archivo.central')" wire:navigate>{{ __('Archivo Central') }}</flux:navlist.item>
+                    <flux:navlist.item icon="document-plus" :href="route('carga.documentos')" :current="request()->routeIs('carga.documentos')" wire:navigate>{{ __('Cargar Documentos') }}</flux:navlist.item>
+                    <flux:navlist.item icon="document-text" :href="route('registro.expediente')" :current="request()->routeIs('registro.expediente')" wire:navigate>{{ __('Registro Expediente') }}</flux:navlist.item>
+                    <flux:navlist.item icon="document-duplicate" :href="route('solicitudes.pendientes')" :current="request()->routeIs('solicitudes.pendientes')" wire:navigate>{{ __('Solicitudes Pendientes') }}</flux:navlist.item>
+                    <flux:navlist.item icon="document-arrow-up" :href="route('formulario.solicitudes')" :current="request()->routeIs('formulario.solicitudes')" wire:navigate>{{ __('Formulario Solicitudes') }}</flux:navlist.item>
+                    <flux:navlist.item icon="document-check" :href="route('enviar.expediente')" :current="request()->routeIs('enviar.expediente')" wire:navigate>{{ __('Enviar expediente aprobado') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
@@ -133,5 +135,6 @@
         {{ $slot }}
 
         @fluxScripts
+        @livewireScripts
     </body>
 </html>

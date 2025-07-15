@@ -1,5 +1,5 @@
 <x-layouts.app :title="__('Archivo Central')">
-    <div class="pb-8">
+    <div class="pb-4">
         <h1 class="text-3xl font-bold text-green-800">PANEL DE SOLICITUDES PENDIENTES – ARCHIVO CENTRAL</h1>
     </div>
 
@@ -11,7 +11,7 @@
         <table class="w-full text-sm text-left text-gray-700">
             <thead class="text-xs text-gray-600 uppercase border-b">
                 <tr>
-                    <th class="px-4 py-2">#</th>
+                    <th class="px-4 py-2">Código</th>
                     <th class="px-4 py-2">Solicitante</th>
                     <th class="px-4 py-2">Expediente</th>
                     <th class="px-4 py-2">Motivo</th>

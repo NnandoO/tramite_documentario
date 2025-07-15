@@ -1,6 +1,6 @@
 <x-layouts.app :title="__('Archivo Central')"> 
     <!-- Título principal -->
-    <div class="pb-2">
+    <div class="pb-4">
         <h1 class="text-3xl font-bold text-green-800">Formulario de solicitud de expediente</h1>
     </div>
 

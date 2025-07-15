@@ -1,19 +1,14 @@
 <x-layouts.app :title="__('Archivo Central')">
     <!-- Título -->
-    <div class="pb-2">
+    <div class="pb-4">
         <h1 class="text-3xl font-bold text-green-800">Registro de expediente</h1>
     </div>
 
-    <!-- Botón registrar -->
-    <div class="mb-6">
-        <flux:button color="green" class="px- py-2">+ Registrar nuevo expediente</flux:button>
-    </div>
-
     <!-- Formulario de registro -->
-    <div class="bg-white shadow-md rounded-xl p-6 mb-6 space-y-4">
+    <div class="max-w-5xl mx-auto bg-white shadow-md rounded-xl p-6 mb-6 space-y-4">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <flux:input name="nombre" placeholder="Nombre del expediente" />
-            <flux:input name="dependencia" placeholder="Dependencia de origen" />
+            <flux:input name="nombre" placeholder="Nombre del expediente" label="Nombre del expediente" />
+            <flux:input name="dependencia" placeholder="Dependencia de origen" label="Dependencia de origen" />
             <flux:input type="date" name="fecha" label="Fecha" />
         </div>
         <div>
