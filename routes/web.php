@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotificacionController;
 
+Route::get('/', function () {
+    return view('welcome');
+})->name('home');
+
 // Rutas de envío de formulario
 Route::post('/notificaciones/solicitar', [NotificacionController::class, 'store'])->name('notificaciones.store');
 Route::post('/notificaciones/finalizar/{id}', [NotificacionController::class, 'finalizar'])->name('notificaciones.finalizar');
