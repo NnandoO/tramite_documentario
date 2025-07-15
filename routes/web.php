@@ -31,4 +31,8 @@ Route::prefix('notificaciones')->name('notificaciones.')->group(function () {
     Route::view('/usuario/bandeja', 'notificaciones.usuario-bandeja')->name('usuario.bandeja');
 });
 
+// Rutas propias del módulo Operador de Mesa de Partes
+require __DIR__.'/operador.php';
+
+// Rutas de autenticación
 require __DIR__.'/auth.php';
