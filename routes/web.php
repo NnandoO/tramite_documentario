@@ -7,6 +7,18 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+Route::middleware(['auth'])->group(function () {
+    Route::redirect('settings', 'settings/profile');
+
+    Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
+    Volt::route('settings/password', 'settings.password')->name('settings.password');
+    Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
+});
+
 // Rutas de envío de formulario
 Route::post('/notificaciones/solicitar', [NotificacionController::class, 'store'])->name('notificaciones.store');
 Route::post('/notificaciones/finalizar/{id}', [NotificacionController::class, 'finalizar'])->name('notificaciones.finalizar');
