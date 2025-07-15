@@ -1,0 +1,177 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #d9d9d9;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #104515;
+    color: #fff;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.sidebar h2 {
+    font-size: 20px;
+    margin: 0;
+    color: #f1f90b;
+    line-height: 1.2;
+}
+
+.sidebar h2 span {
+    color: white;
+}
+
+.sub {
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    padding: 10px 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #ddd;
+}
+
+.sidebar nav ul li.active {
+    background-color: #c3c711;
+    color: #000;
+    border-radius: 5px;
+}
+
+.sidebar nav ul li i {
+    margin-right: 10px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #0c3110;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.avatar {
+    background-color: #e53935;
+    color: white;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Main content */
+.main {
+    flex: 1;
+    padding: 40px;
+}
+
+.content-box {
+    background: white;
+    padding: 30px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.content-box h1 {
+    text-align: center;
+    margin-top: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card {
+    margin-top: 20px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.card h2 {
+    background-color: #d3d7db;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.info-table th,
+.info-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+    background-color: #fdfdfd;
+}
+
+.req-table th,
+.req-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+    background-color: #fff;
+}
+
+.detalle-btn {
+    background-color: #f7d900;
+    border: none;
+    padding: 5px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #000;
+    border-radius: 3px;
+}
+
+.acciones {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+.validar-btn {
+    background-color: #5fd37d;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.rechazar-btn {
+    background-color: #f44336;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
