@@ -22,6 +22,7 @@ Route::middleware(['auth'])->group(function () {
 
 require __DIR__.'/auth.php';
 
+// Rutas para tramites de record academico y orden de merito
 Route::get('/tramites/record-academico', [TramiteController::class, 'showRecordForm'])->name('tramites.record');
 Route::post('/tramites/record-academico', [TramiteController::class, 'submitRecordForm'])->name('tramites.record.enviar');
 Route::get('/tramites/constancia-orden-merito', [TramiteController::class, 'showConstOrdForm'])->name('tramites.orden');
