@@ -90,7 +90,7 @@
 </flux:select>
 
 
-        <flux:select wire:model="document_type" placeholder="Tipo de documento">
+        <flux:select wire:model="tramite_type" placeholder="Tipo de trámite">
             <flux:select.option>Solicitud</flux:select.option>
             <flux:select.option>Constancia</flux:select.option>
             <flux:select.option>Certificado</flux:select.option>

@@ -8,21 +8,35 @@ use App\Models\Facultad;
 
 class CentralFileFilter extends Component
 {
+    public $dni;
     public $year;
-    public $month;
+    public $month_id;
     public $faculty_id;
-    public $document_type;
-    public $status;
+    public $tramite_type_id;
+    public $status_id;
     public $facultades;
+    public $months;
+    public $tramiteTypes;
+    public $statuses;
+    public $years;
 
     public function mount()
     {
         $this->facultades = Facultad::orderBy('nombre')->get();
+        $this->months = \App\Models\Month::all();
+        $this->tramiteTypes = \App\Models\TramiteType::all();
+        $this->statuses = \App\Models\Status::all();
+        $this->years = Expedientes::select('year')->distinct()->orderBy('year')->pluck('year');
     }
 
     public function limpiarFiltros()
     {
-        $this->reset(['year', 'month', 'faculty_id', 'document_type', 'status']);
+        $this->reset(['dni', 'year', 'month_id', 'faculty_id', 'tramite_type_id', 'status_id']);
+    }
+
+    public function applyFilters()
+    {
+        // Method intentionally left blank; Livewire will re-render on invocation
     }
 
     public function render()
@@ -30,28 +44,39 @@ class CentralFileFilter extends Component
         // Carga la relación facultad
         $query = Expedientes::with('facultad');
 
+        if ($this->dni) {
+            $query->where('dni', $this->dni);
+        }
+
         if ($this->year) {
             $query->where('year', $this->year);
         }
 
-        if ($this->month) {
-            $query->where('month', $this->month);
+        if ($this->month_id) {
+            $query->where('month_id', $this->month_id);
         }
 
         if ($this->faculty_id) {
             $query->where('faculty_id', $this->faculty_id);
         }
 
-        if ($this->document_type) {
-            $query->where('document_type', $this->document_type);
+        if ($this->tramite_type_id) {
+            $query->where('tramite_type_id', $this->tramite_type_id);
         }
 
-        if ($this->status) {
-            $query->where('status', $this->status);
+        if ($this->status_id) {
+            $query->where('status_id', $this->status_id);
         }
 
         $files = $query->get();
 
-        return view('livewire.central-file-filter', compact('files'));
+        return view('livewire.central-file-filter', [
+            'files' => $files,
+            'facultades' => $this->facultades,
+            'months' => $this->months,
+            'tramiteTypes' => $this->tramiteTypes,
+            'statuses' => $this->statuses,
+            'years' => $this->years,
+        ]);
     }
 }
