@@ -56,4 +56,5 @@ class TramiteController extends Controller
             'archivo2' => $path2,
         ]);
     }
+
 }

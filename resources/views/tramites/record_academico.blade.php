@@ -70,13 +70,90 @@
                 </tbody>
             </table>
 
-            <div style="margin-top: 30px; text-align: center;">
-                <button style="padding: 10px 20px; background-color: #245624; border: none; color: #fff; border-radius: 6px; font-weight: bold; cursor: pointer;">
+            <div style="margin-top: 30px; text-align: center; display: flex; justify-content: center; gap: 20px;">
+                <button id="btnEnviar" disabled
+                    style="padding: 10px 20px; background-color: #999; border: none; color: #fff; border-radius: 6px; font-weight: bold; cursor: not-allowed;">
                     + Enviar solicitud
+                </button>
+
+                <button id="btnDeshacer" disabled
+                    style="padding: 10px 20px; background-color: #999; border: none; color: #fff; border-radius: 6px; font-weight: bold; cursor: not-allowed;">
+                    ✖ Deshacer solicitud
                 </button>
             </div>
         </div>
     </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const sustento = document.querySelector('textarea');
+        const inputsFile = document.querySelectorAll('input[type="file"]');
+        const btnEnviar = document.getElementById('btnEnviar');
+        const btnDeshacer = document.getElementById('btnDeshacer');
+
+        let enviado = false;
+
+        function verificarFormularioCompleto() {
+            const textoOk = sustento.value.trim() !== "";
+            const archivosOk = Array.from(inputsFile).every(input => input.files.length > 0);
+
+            if (textoOk && archivosOk && !enviado) {
+                btnEnviar.disabled = false;
+                btnEnviar.style.backgroundColor = '#245624';
+                btnEnviar.style.cursor = 'pointer';
+            } else {
+                btnEnviar.disabled = true;
+                btnEnviar.style.backgroundColor = '#999';
+                btnEnviar.style.cursor = 'not-allowed';
+            }
+        }
+
+        sustento.addEventListener('input', verificarFormularioCompleto);
+        inputsFile.forEach(input => input.addEventListener('change', verificarFormularioCompleto));
+
+        btnEnviar.addEventListener('click', function () {
+            if (!btnEnviar.disabled) {
+                enviado = true;
+
+                // Simular acción de envío
+                alert('Solicitud enviada');
+
+                // Desactiva enviar
+                btnEnviar.disabled = true;
+                btnEnviar.style.backgroundColor = '#999';
+                btnEnviar.style.cursor = 'not-allowed';
+
+                // Activa deshacer
+                btnDeshacer.disabled = false;
+                btnDeshacer.style.backgroundColor = '#c0392b';
+                btnDeshacer.style.cursor = 'pointer';
+            }
+        });
+
+        btnDeshacer.addEventListener('click', function () {
+            if (!btnDeshacer.disabled) {
+                enviado = false;
+
+                // Simular acción de deshacer
+                alert('Solicitud deshecha');
+
+                // Limpia formulario
+                sustento.value = '';
+                inputsFile.forEach(input => input.value = '');
+
+                // Desactiva deshacer
+                btnDeshacer.disabled = true;
+                btnDeshacer.style.backgroundColor = '#999';
+                btnDeshacer.style.cursor = 'not-allowed';
+
+                // Revisa otra vez si se puede activar enviar
+                verificarFormularioCompleto();
+            }
+        });
+    });
+</script>
+
+
 @endsection
 
 
