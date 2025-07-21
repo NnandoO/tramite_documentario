@@ -116,8 +116,17 @@
 
                 <p style="font-size: 12px; color: gray; margin-top: 10px;">* Los requisitos que indican "opcional" son opcionales.</p>
 
-                <div style="text-align: right; margin-top: 30px;">
-                    <button type="submit"
+                {{-- Botones --}}
+                <div style="text-align: right; margin-top: 30px; display: flex; justify-content: flex-end; gap: 15px;">
+                    {{-- Botón Cancelar --}}
+                    <button type="button" id="btn-cancelar"
+                        style="background-color: #cccccc; padding: 12px 24px; border: none; font-weight: bold; border-radius: 4px; cursor: not-allowed; color: #555;"
+                        disabled>
+                        CANCELAR ENVÍO
+                    </button>
+
+                    {{-- Botón Enviar --}}
+                    <button type="submit" id="btn-enviar"
                         style="background-color: #E5C300; padding: 12px 24px; border: none; font-weight: bold; border-radius: 4px; cursor: pointer;">
                         + ENVIAR SOLICITUD
                     </button>
@@ -126,6 +135,7 @@
         </div>
     </form>
 
+    {{-- Scripts --}}
     <script>
         function previewImage(event) {
             const input = event.target;
@@ -144,5 +154,28 @@
                 preview.style.display = 'none';
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const btnEnviar = document.getElementById('btn-enviar');
+            const btnCancelar = document.getElementById('btn-cancelar');
+
+            btnEnviar.addEventListener('click', function () {
+                // Deshabilita enviar, habilita cancelar después de un momento
+                setTimeout(() => {
+                    btnEnviar.disabled = true;
+                    btnEnviar.style.cursor = 'not-allowed';
+
+                    btnCancelar.disabled = false;
+                    btnCancelar.style.cursor = 'pointer';
+                    btnCancelar.style.backgroundColor = '#FF6B6B';
+                    btnCancelar.style.color = 'white';
+                }, 100);
+            });
+
+            btnCancelar.addEventListener('click', function () {
+                // Recargar la página (reinicia el formulario)
+                window.location.reload();
+            });
+        });
     </script>
 @endsection
