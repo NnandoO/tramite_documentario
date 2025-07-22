@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('solicitud_expeditos', function (Blueprint $table) {
             $table->id();
+            $table->string('titulo_tramite'); // Agregamos el título del trámite
             $table->string('sustento');
             $table->json('archivos'); // Guardaremos nombres o paths como JSON
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.

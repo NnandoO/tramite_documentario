@@ -20,26 +20,33 @@
 
     <div class="mb-4">
         <label class="block text-sm font-medium mb-1">Sustento</label>
-        <textarea wire:model.defer="sustento" class="w-full border rounded p-2 text-sm"></textarea>
+        <textarea wire:model.defer="sustento" class="w-full border rounded p-2 text-sm" rows="3"></textarea>
         @error('sustento')<span class="text-red-600 text-xs">{{ $message }}</span>@enderror
     </div>
 
     <div class="mb-4">
         <h2 class="font-bold text-sm mb-2">Archivos</h2>
         @foreach($requisitos as $index => $req)
-            <div class="mb-2">
-                <flux:input type="file" wire:model="logo" label="{{ $req }}"/>
+            <div class="mb-3">
+                <label class="block text-xs font-medium mb-1">{{ $req }}</label>
+                <input type="file" wire:model="archivos.{{ $index }}" class="w-full border rounded p-2 text-sm">
                 @error("archivos.$index")<span class="text-red-600 text-xs">{{ $message }}</span>@enderror
             </div>
         @endforeach
     </div>
 
     <div class="text-center">
-        <button wire:click="enviarSolicitud" class="px-4 py-2 bg-green-600 text-white rounded">Enviar solicitud</button>
-        <button wire:click="volver" class="ml-2 px-4 py-2 bg-gray-200 text-gray-700 rounded">Volver</button>
+        <button wire:click="enviarSolicitud" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+            Enviar solicitud
+        </button>
+        <button wire:click="volver" class="ml-2 px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300">
+            Volver
+        </button>
     </div>
 
     @if (session()->has('message'))
-        <div class="mt-4 p-2 bg-green-100 text-green-700 rounded text-sm">{{ session('message') }}</div>
+        <div class="mt-4 p-2 bg-green-100 text-green-700 rounded text-sm">
+            {{ session('message') }}
+        </div>
     @endif
 </div>
