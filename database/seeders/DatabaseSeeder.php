@@ -22,6 +22,23 @@ class DatabaseSeeder extends Seeder
             StatusSeeder::class,
             ExpedientesSeeder::class,
             DefaultUsersSeeder::class,
+            TramiteConstanciaExpeditoProfesionalSeeder::class,
+            DetalleTramiteSeeder::class,
+            Requisito1Seeder::class,
+            Requisito2Seeder::class,
+            Requisito3Seeder::class,
+            Requisito4Seeder::class,
+            Requisito5Seeder::class,
+            Requisito6Seeder::class,
+            Requisito7Seeder::class,
+            Requisito8Seeder::class,
+            Requisito9Seeder::class,
+            Requisito10Seeder::class,
+            Requisito11Seeder::class,
+            Requisito12Seeder::class,
+            Requisito13Seeder::class,
+            Requisito14Seeder::class,
+
         ]);
     }
 }
