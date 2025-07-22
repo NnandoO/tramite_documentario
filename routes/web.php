@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
+Route::get('dashboard', \App\Livewire\HistorialTramites::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
@@ -70,7 +70,7 @@ Route::middleware(['auth', 'verified', 'role:administrador'])->group(function ()
 
     Route::view('tramite_finalizado', 'Administrador.tramite_finalizado')
         ->name('tramite.finalizado');
-        
+
     Route::view('bandeja_entrada', 'Administrador.bandeja_entrada')
         ->name('bandeja.entrada');
 });
