@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f6f9;
+    color: #333;
+}
+
+.main-content {
+    max-width: 1000px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+h2,
+h3 {
+    margin-top: 0;
+    color: #374151;
+    /* gris oscuro */
+}
+
+.tabla-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.expedientes-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.expedientes-table th,
+.expedientes-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.expedientes-table th {
+    background: #d3d7db;
+}
+
+.btn {
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+    transition: background-color 0.3s ease;
+    padding: 8px 14px;
+    border-radius: 5px;
+}
+
+/* Botón Enviar (azul índigo) */
+.btn-enviar,
+.bg-indigo-600 {
+    background-color: #6366f1;
+    color: #fff;
+}
+
+.btn-enviar:hover,
+.bg-indigo-600:hover {
+    background-color: #4f46e5;
+}
+
+/* Botón Cancelar (gris) */
+.bg-gray-400 {
+    background-color: #9ca3af;
+    color: #fff;
+}
+
+.bg-gray-400:hover {
+    background-color: #6b7280;
+}
+
+/* Botón Seleccionar (amarillo) */
+.bg-yellow-500 {
+    background-color: #facc15;
+    color: #fff;
+}
+
+.bg-yellow-500:hover {
+    background-color: #eab308;
+}
+
+/* Botón Remitir (si se usa) */
+.btn-remitir {
+    background-color: #3490dc;
+    color: #fff;
+}
+
+.btn-remitir:hover {
+    background-color: #2779bd;
+}
+
+.acciones {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.container {
+    background: #f9fafb;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+input[type="text"],
+input[type="url"],
+input[type="date"],
+textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.bg-green-100,
+.bg-red-100 {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.text-red-500 {
+    color: #e53e3e;
+    font-size: 13px;
+}

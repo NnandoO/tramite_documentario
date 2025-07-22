@@ -1,0 +1,119 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f6f9;
+    color: #333;
+    margin: 0;
+}
+
+.main-content {
+    max-width: 1000px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+h2,
+h3 {
+    margin-top: 0;
+    color: #374151;
+}
+
+.tabla-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.expedientes-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.expedientes-table th,
+.expedientes-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.expedientes-table th {
+    background: #d3d7db;
+}
+
+.btn {
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-ver {
+    background-color: #6366f1;
+    /* azul índigo */
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+}
+
+.btn-ver:hover {
+    background-color: #4f46e5;
+}
+
+.acciones {
+    margin-top: 15px;
+}
+
+.detalle-info {
+    background: #f9fafb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+input[type="date"],
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.required {
+    color: red;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.alert-danger {
+    background-color: #fee2e2;
+    color: #991b1b;
+}

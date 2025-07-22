@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f6f9;
+    color: #333;
+}
+
+.main-content {
+    max-width: 1000px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-top: 0;
+    color: #374151;
+    /* gris oscuro */
+    font-size: 24px;
+}
+
+.tabla-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: 20px;
+}
+
+.expedientes-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.expedientes-table th,
+.expedientes-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.expedientes-table th {
+    background: #d3d7db;
+    font-weight: 600;
+}
+
+.expedientes-table tr:nth-child(even) {
+    background: #f9fafb;
+}
+
+.expedientes-table tr:hover {
+    background-color: #eef2f7;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-gray-500 {
+    color: #6b7280;
+}
+
+.fa-bell-slash {
+    color: #9ca3af;
+}
