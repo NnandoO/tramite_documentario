@@ -73,6 +73,9 @@ Route::middleware(['auth', 'verified', 'role:administrador'])->group(function ()
         
     Route::view('bandeja_entrada', 'Administrador.bandeja_entrada')
         ->name('bandeja.entrada');
+
+    Route::view('repositorio_archivados', 'Administrador.repositorio_archivados')
+        ->name('repositorio.archivados');
 });
 
 Route::middleware(['auth', 'verified', 'role:funcionario'])->group(function () {

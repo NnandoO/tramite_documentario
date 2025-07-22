@@ -32,7 +32,6 @@
             </tbody>
         </table>
     </div>
-
     @if($selectedRequest)
         <div class="mt-8 max-w-xl mx-auto bg-white p-6 rounded-lg shadow-md">
             <h3 class="text-xl font-semibold mb-4">Detalle del trámite</h3>
@@ -41,37 +40,90 @@
             <p class="text-sm text-gray-700 mb-4"><strong>Solicitante:</strong> {{ $selectedRequest->expediente->solicitante }}</p>
 
             <div class="mt-4">
-                <flux:input
-                    type="text"
-                    wire:model.defer="ubicacion"
-                    placeholder="Ej. Estante 3, Caja 5"
-                />
+                <label for="fecha" class="block mb-1 font-semibold text-gray-700">Fecha Ingreso:</label>
+                <input type="date" id="fecha" wire:model.defer="fecha" class="form-control" />
+                @error('fecha') 
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="mt-4">
+                <label for="estado" class="block mb-1 font-semibold text-gray-700">Estado:</label>
+                <select id="estado" wire:model.defer="estado" class="form-control">
+                    <option value="En Proceso">En Proceso</option>
+                    <option value="Finalizado">Finalizado</option>
+                    <option value="Pendiente">Pendiente</option>
+                </select>
+                @error('estado') 
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="mt-4">
+                <label for="tipo" class="block mb-1 font-semibold text-gray-700">Tipo de Trámite:</label>
+                <select id="tipo" wire:model.defer="tipo" class="form-control" onchange="mostrarOtroTipo()">
+                    <option>Solicitud de Copia</option>
+                    <option>Registro Nuevo</option>
+                    <option>Actualización de Datos</option>
+                    <option>Otro</option>
+                </select>
+                <input type="text" id="otroTipo" wire:model.defer="otroTipo" class="form-control mt-2" style="display: none;" placeholder="Especificar otro tipo..." />
+                @error('otroTipo') 
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="mt-4">
+                <label for="facultad" class="block mb-1 font-semibold text-gray-700">Facultad:</label>
+                <select id="facultad" wire:model.defer="facultad" class="form-control">
+                    <option>Ingeniería</option>
+                    <option>Ciencias Administrativas</option>
+                    <option>Derecho</option>
+                    <option>Educación</option>
+                    <option>Otra</option>
+                </select>
+                @error('facultad') 
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="mt-4">
+                <label for="ubicacion" class="block mb-1 font-semibold text-gray-700">Ubicación Física:</label>
+                <input type="text" id="ubicacion" wire:model.defer="ubicacion" class="form-control" placeholder="Ej. Estante 3, Caja 5, Archivo B" />
                 @error('ubicacion') 
                     <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="mt-4">
-                <flux:textarea
-                    wire:model.defer="comentario"
-                    rows="3"
-                    placeholder="Opcional..."
-                    label="Comentario"
-                ></flux:textarea>
-                @error('comentario')
+                <label for="comentario" class="block mb-1 font-semibold text-gray-700">Comentarios:</label>
+                <textarea id="comentario" wire:model.defer="comentario" class="form-control" placeholder="Observaciones adicionales..."></textarea>
+                @error('comentario') 
                     <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="flex justify-end items-center gap-3 mt-6">
-                <flux:button wire:click="generarReporte">
-                    <flux-icon name="document-arrow-down" class="w-4 h-4 mr-1" />
-                    Generar PDF y archivar
+                <flux:button wire:click="previsualizarPDF">
+                    <flux-icon name="eye" class="w-4 h-4 mr-1" />
+                    Previsualizar
                 </flux:button>
-
-                <flux:button wire:click="$set('selectedRequest', null)">
+                <flux:button wire:click="descargarPDF">
+                    <flux-icon name="document-arrow-down" class="w-4 h-4 mr-1" />
+                    Exportar PDF
+                </flux:button>
+                <flux:button wire:click="cancelar">
                     Cancelar
                 </flux:button>
+            </div>
+
+            <div class="pdf-preview mt-4" id="pdfPreviewContainer">
+                <div class="pdf-placeholder" id="pdfPlaceholder">
+                    <i class="fas fa-file-pdf"></i>
+                    <p>Previsualización del documento PDF</p>
+                    <small>Haz clic en "Previsualizar" para generar el documento</small>
+                </div>
+                <iframe id="visor" style="display: none;"></iframe>
             </div>
         </div>
     @endif

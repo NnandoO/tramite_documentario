@@ -36,6 +36,7 @@
                         <flux:navlist.item icon="clock" :href="route('tramite.pendiente')" :current="request()->routeIs('tramite.pendiente')" wire:navigate>{{ __('Trámite Pendiente') }}</flux:navlist.item>
                         <flux:navlist.item icon="arrow-right-circle" :href="route('tramite.proceso')" :current="request()->routeIs('tramite.proceso')" wire:navigate>{{ __('Trámite en Proceso') }}</flux:navlist.item>
                         <flux:navlist.item icon="document-check" :href="route('tramite.finalizado')" :current="request()->routeIs('tramite.finalizado')" wire:navigate>{{ __('Trámite Finalizado') }}</flux:navlist.item>
+                        <flux:navlist.item icon="document-check" :href="route('repositorio.archivados')" :current="request()->routeIs('repositorio.archivados')" wire:navigate>{{ __('repositorio archivados') }}</flux:navlist.item>
                     @endif
                     @if ($role === 'funcionario')
                         <flux:navlist.item icon="home" :href="route('panel.principal')" :current="request()->routeIs('panel.principal')" wire:navigate>{{ __('Panel principal') }}</flux:navlist.item>

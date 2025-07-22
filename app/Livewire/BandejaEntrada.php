@@ -65,4 +65,11 @@ class BandejaEntrada extends Component
     {
         return view('livewire.bandeja-entrada');
     }
+    public function cancelar()
+    {
+        $this->selectedRequest = null;
+        $this->ubicacion = null;
+        $this->comentario = null;
+        $this->dispatch('cancelarFormulario');
+    }
 }
